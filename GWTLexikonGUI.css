@@ -1,0 +1,343 @@
+/** Add css rules here for your application. */
+/* resetting */
+html, body, td, tr, table, ul, li, a, h1, h2, h3, select, input, pre, a {
+	padding:   0;
+	margin:    0;
+}
+
+a, a:active, a:visited, a:hover {
+  outline:    none;
+}
+
+html, body {
+	height:    100%;
+}
+
+body {
+	font-family:       Verdana, Arial, Sans-serif;
+	font-size:         12px;
+}
+
+#all-wrapper {
+	width:             100%;
+	/*overflow:          auto;*/
+  /*margin:            0 auto 0 auto;*/
+  background:        #f4f4f4;
+  height:            100%;
+  overflow:          auto;
+}
+
+input {
+  -webkit-border-radius: 5px;
+  -moz-border-radius:    5px;
+  border:                1px solid #999;
+  padding:               0.2em 0.5em;
+}
+
+input.disabled {
+	background:          #ddd;
+	border-color:        #eee;
+}
+
+.specification input,
+.specification .drop-down-input {
+	margin-left:     1em;
+}
+
+table {
+	/*margin:    0 auto;*/
+}
+
+#footer-wrapper {
+  color:        #b9b9b9;
+  text-align:   left;
+  padding:      0.7em;
+  border-top:   1px solid #eee;
+  font-size:    0.8em;
+}
+
+#search-stuff-wrapper {
+  vertical-align:       top;
+}
+
+/** Example rules used by the template application (remove for your app) */
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #777777;
+  /*margin: 40px 0px 70px;*/
+  padding:   40px 0 40px 0;
+  text-align: center;
+}
+
+.sendButton {
+  display: block;
+  font-size: 16pt;
+}
+
+/** Most GWT widgets already have a style name defined */
+.gwt-DialogBox {
+  width: 400px;
+}
+
+.dialogVPanel {
+  margin: 5px;
+}
+
+.serverResponseLabelError {
+  color: red;
+}
+
+/** Set ids using widget.getElement().setId("idOfElement") */
+#closeButton {
+  margin: 15px 6px 6px;
+}
+
+#top-bar {
+	border-bottom:     1px solid #eee;
+	/* padding:           0.5em 1em; */
+}
+
+#profile-and-language-changer {
+	width:         auto;
+	float:         right;
+	text-align:    left;
+	/* background:    #abb; */
+}
+
+#profile-and-language-changer td {
+  /* border:        1px solid #aaa; */
+}
+
+table.profile-language-changer .gwt-Label-profile-changer,
+table.profile-language-changer .gwt-Label-language-changer,
+table.profile-language-changer .clickable-label {
+	font-size:     9pt;
+	padding:       0;
+	margin:        0;
+	line-height:   1.5em;
+}
+
+table.profile-language-changer .gwt-Label {
+  cursor:       default;	
+}
+
+table.profile-language-changer .gwt-Label-language-changer {
+  margin-left:   10px;
+}
+
+#top-bar table.profile-language-changer .clickable-label {
+  margin-right:   5px;
+  margin-left:    5px;
+}
+
+.specification-button {
+	text-decoration:   none;
+	color:         #000;
+  cursor:        pointer;
+	font-size:     1.6em;
+	line-height:   1em;
+	padding:       0 5px 0 5px;
+	background:    transparent;
+}
+
+.specification-button:hover {
+	color:         #555;
+}
+
+select {
+  /* background:             #f00;
+  border:                 1px solid green;
+  -webkit-border-radius:  0px; */
+}
+
+table.sub-search-wrapper {
+  margin-bottom:    2px;
+  background:       #99abab;
+  
+}
+
+table.follow-sub-wrapper {
+ margin-top: 1em;
+ background: #928238;
+}
+
+/*
+#searchResults .gwt-Label {
+  background:   #abacde;
+  font-size:    11px;
+  cursor:       default;
+}
+*/
+
+.specification-wrapper .specifications {
+	margin-left:   1em;
+}
+
+.specifications {
+	padding:       5px;
+	/* border:        1px solid #439; */
+	/* background:    #800; */
+}
+
+.specification-wrapper {
+	padding:       5px;
+	/* border:        1px solid #6f6; */
+	/* background:    #080; */
+}
+
+.specification {
+	padding:       5px;
+	/* border:        1px solid #934; */
+  /* background:    #008; */
+}
+
+.unfloat {
+	clear:both;
+}
+
+.class-1 {
+	background:      red;
+}
+.class-2 {
+  background:       green;
+}
+.class-3 {
+  background:     blue;
+}
+
+table.search-result-panel {
+  width:      600px;
+}
+
+.search-result-panel .gwt-DisclosurePanel {
+	width:       100%;
+}
+
+.search-result-summary,
+.search-result-query {
+  display:    block;
+  padding:    1em;
+}
+
+.search-result-query {
+  color:      #555;
+  width:      100%;
+  overflow-x: auto;
+}
+
+.search-query {
+  display:    block;
+  padding:    1em;
+}
+
+.search-query pre {
+  font-size:    9pt;
+  background:   #999;
+  width:        730px;
+  overflow-y:   scroll;
+}
+
+#top-bar .status-info,
+#top-bar .search-info {
+  position:         absolute;
+  top:              0;
+  left:             0;
+  padding:          0.2em 1em 0.2em 0.6em;
+  background:       #fa0;
+  font-style:       italic;
+}
+
+#simple-search-box {
+  
+}
+
+#search-controlls > table {
+	/*background:      #ababab;*/
+	height:          2em;
+}
+
+#search-controlls > table td {
+  height:           100%;
+  vertical-align:   middle !important;
+}
+
+#search-controlls > table td .to-search-label {
+  
+}
+
+#search-controlls > table td .to-search-label:hover {
+  color:                
+}
+
+#search-controlls button.gwt-Button {
+	padding:                 0.2em 0.6em;
+	margin:                  0 10px 0 0;
+	-webkit-border-radius:   4px;
+  -moz-border-radius:      4px;
+	
+	/*border:        2px solid black !important;*/
+} 
+
+.search-box {
+	margin:            0 0 30px 0;
+	width:             100%;
+	/*background:        red;*/
+}
+
+.search-box td {
+	text-align:        center;
+}
+
+.with-extended {
+	padding:           0 0 30px 0;
+	margin:            0 0 14px 0;
+	border-bottom:     1px solid #888;
+}
+
+#simple-search-box .simple-search-input {
+  width:                    300px;
+  font-size:                1.2em;
+  -webkit-box-shadow:       5px 5px 5px #999;
+  -moz-box-shadow:          5px 5px 5px #999;
+  margin:                   0 auto;
+}
+
+#search-stuff-wrapper div.center > table {
+  margin:         0 auto;
+}
+
+#footer-wrapper,
+#top-bar,
+#info-bar {
+  height:     15px;
+  padding:    0.3em 0.8em;
+}
+
+
+#search-controlls > table td .to-search-label,
+#top-bar table.profile-language-changer .clickable-label {
+	color:       #999;
+	cursor:      pointer;
+	
+}
+
+#search-controlls > table td .to-search-label:hover,
+#top-bar table.profile-language-changer .clickable-label:hover {
+  color:                  #d90;
+  text-decoration:        underline;
+}
+
+/*
+a.lex-item-link:before {
+	text-align:        right;
+	font-family:       monospace;
+	background:        #ff0;
+	content:           counter(links) ":";
+	counter-increment: links;
+	padding:           0 0.5em;
+	border:            1px dotted #999;
+	margin:            0 0.4em 0 0;
+	
+}
+*/

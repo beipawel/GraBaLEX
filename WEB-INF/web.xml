@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app context-path="GraBaLEX">
+  
+  <!-- Servlets -->
+  <servlet>
+    <servlet-name>controllerServiceImpl</servlet-name>
+    <servlet-class>org.homelinux.kapa.server.ControllerServiceImpl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>controllerServiceImpl</servlet-name>
+    <url-pattern>/gwtlexikongui/controller</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>displayLexiconItem</servlet-name>
+    <servlet-class>org.homelinux.kapa.server.DisplayLexiconItem</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>displayLexiconItem</servlet-name>
+    <url-pattern>/GraBaLEX/displayLexiconItem</url-pattern>
+  </servlet-mapping>
+  
+  <listener>
+    <listener-class>org.homelinux.kapa.server.MyServletContextListener</listener-class>
+  </listener>
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>GWTLexikonGUI.html</welcome-file>
+  </welcome-file-list>
+
+  <context-param>
+    <!--    <description>This is the path in the file system where the medic.owl file should exist</description>-->
+    <param-name>model_file</param-name>
+    <!--    <param-value>/Users/pawelmuller/Sites/studienarbeit.home/zeug_von_dennis/091209/archive/100111_medic_model.owl</param-value> -->
+    <param-value>/Users/pawelmuller/Sites/studienarbeit.home/zeug_von_dennis/091209/medic.owl</param-value>
+  </context-param>
+  
+  <context-param>
+    <!--    <description>The name of the Sesame repository to use in this application</description>-->
+    <param-name>repository_name</param-name>
+<!--    <param-value>091204_data</param-value>-->
+<!--    <param-value>medic</param-value>-->
+    <param-value>100307_GraBaLEX_data</param-value>
+  </context-param>
+  
+  <context-param>
+    <!--    <description>The address of the sesame server were we can find the repository</description>-->
+    <param-name>sesame_server_name</param-name>
+<!--    <param-value>http://141.58.164.77:8080/sesame-2.3_srv</param-value>-->
+    <param-value>http://localhost:8080/sesame_2.3.0/</param-value>
+  </context-param>
+  
+
+</web-app>

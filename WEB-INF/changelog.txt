@@ -1,0 +1,11 @@
+Version 0.80:
+  - Optimierungen im filter für Properties
+  - Debug Code für BahaviorTyp ist jetzt nicht mehr drin
+  - Hardcodierte Labels in der ProfileAndLanguageChanger-Klasse geändert
+  - FIX: AccessStatus wurde für OWLInstanceItem-Objekte ignoriert. Jetzt werden auch DropDownInput Listen über den AccessStatus gefiltert
+  
+
+Version 0.79:
+  - CHANGE: Sortierung der Properties jetzt Case insensitive
+  - CHANGE: DropDownInput Items sind jetzt auch nach AccessStatus gefiltert
+  - 
