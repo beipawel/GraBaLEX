@@ -187,10 +187,20 @@ public class ProfileAndLanguageChanger extends HorizontalPanel implements
     if (o instanceof ProfileLabel) {
       ClickableLabel l = (ClickableLabel) o;
       currentProfile = l.getName();
+   // We have to update the CSS class mark "active" on each Label
+      for (Iterator<ClickableLabel> iterator = this.profileLabels.iterator(); iterator.hasNext();) {
+        ClickableLabel cl = iterator.next();
+        cl.activate();
+      }
     }
     else if (o instanceof LanguageLabel) {
       LanguageLabel l = (LanguageLabel) o;
       currentLanguage = l.getName();
+      // We have to update the CSS class mark "active" on each Label
+      for (Iterator<ClickableLabel> iterator = this.languageLabels.iterator(); iterator.hasNext();) {
+        ClickableLabel cl = iterator.next();
+        cl.activate();
+      }
     }
     this.notifyObservers();
   }

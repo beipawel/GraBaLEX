@@ -105,6 +105,11 @@ h1 {
 	/* background:    #abb; */
 }
 
+#top-bar #profile-and-language-changer div.active {
+	color:                  #a40;
+	text-decoration:        none !important;
+}
+
 #profile-and-language-changer td {
   /* border:        1px solid #aaa; */
 }
@@ -317,14 +322,14 @@ table.search-result-panel {
 
 #search-controlls > table td .to-search-label,
 #top-bar table.profile-language-changer .clickable-label {
-	color:       #999;
+	color:       #888;
 	cursor:      pointer;
 	
 }
 
 #search-controlls > table td .to-search-label:hover,
 #top-bar table.profile-language-changer .clickable-label:hover {
-  color:                  #d90;
+  color:                  #a40 !important;
   text-decoration:        underline;
 }
 

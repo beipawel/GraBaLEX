@@ -1,3 +1,6 @@
+Version 0.82:
+  - FIX: Ausgewählte Profile und Sprachen werden jetzt hervorgehoben.
+
 Version 0.81:
   - FIX: AccessStatus überprüfung in den isVisible Methoden war nicht Profilabhängig.
 

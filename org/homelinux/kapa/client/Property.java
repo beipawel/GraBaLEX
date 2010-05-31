@@ -163,13 +163,11 @@ public class Property implements Serializable, Comparable<Property> {
    * 
    */
   public Boolean isVisible() {
-    // right now, if accessStatus is not null it's set to "ignore", so the following is a fair check for visibility
-    if ( this.getAccessStatus() == null ) {
-//      System.out.println("YES, "+this.getName()+" is visible.");
-      return true;
+    // if the AccessStatus for the current item in the current profile is set to ignore, we'll return false
+    if ( this.getAccessStatus() != null && this.getAccessStatus(ProfileAndLanguageChanger.getStaticProfile()).contentEquals("ignore") ) {
+      return false;
     }
-//    System.out.println("NOO, "+this.getName()+" is visible.");
-    return false;
+    return true;
   }
   
   /**

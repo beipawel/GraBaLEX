@@ -23,9 +23,23 @@ public class ClickableLabel extends Label implements Observerable {
     this.setStylePrimaryName("clickable-label");
   }
   
+  /**
+   * Marks <code>this</code> with CSS class "active" if <code>this</code> is selected. Otherwise it removes the "active" class.
+   */
+  public void activate() {
+    // if the name of this is the one of the current profile or language, we'll mark this with the CSS class "active"
+    if ( ProfileAndLanguageChanger.getStaticProfile().contentEquals(this.name) || ProfileAndLanguageChanger.getStaticLanguage().contentEquals(this.name) ) {
+      this.addStyleName("active");
+    }
+    else {
+      this.removeStyleName("active");
+    }
+  }
+  
   protected void onAttach() {
     super.onAttach();
     // register a Clickhandler
+    this.activate();
     this.addClickHandler(new ClickHandler() {
       public void onClick(ClickEvent event) {
         onClickHandler(); // we'll call the onClickHandler method of the concrete implementation of ClickableLabel
@@ -36,12 +50,7 @@ public class ClickableLabel extends Label implements Observerable {
   protected void onClickHandler() {
     this.notifyObservers();
     // setting active / inactive
-    if ( this.getStyleName().matches(".*active.*") ) {
-      this.removeStyleName("active");
-    }
-    else {
-      this.addStyleName("active");
-    }
+//    this.activate();
   }
   
   public void notifyObservers() {

@@ -26,13 +26,12 @@ public class OWLInstanceItem implements Serializable, Comparable<OWLInstanceItem
     this.setLabel(label);
     this.setURI(uri);
   }
-  
+
+  /**
+   * Returns the Label for this OWLInstanceItem for the current profile.
+   * @return
+   */
   private String getProfileDependentLabelValue () {
-    // The big plan is, to have an object somewhere in the GUI, which defines
-    // what's the currently used profile and language. But if that fails we need a backup.
-    // for now, we'll set the defaults here.
-    // TODO:  Connect to the GUI object holding the currently used profile and language
-    
     if ( this.profileDependentLabel != null ) {
       return this.profileDependentLabel.getLabel(ProfileAndLanguageChanger.getStaticProfile(), ProfileAndLanguageChanger.getStaticLanguage());
     }
@@ -77,11 +76,15 @@ public class OWLInstanceItem implements Serializable, Comparable<OWLInstanceItem
    * @return   If the label was <code>null</code> or empty a part of the URI will be returned
    */
   public String getLabel() {
+    String label = "";
     if ( this.getProfileIndependentLabelValue().length() != 0 ) {
-      return this.getProfileIndependentLabelValue();
+      label = this.getProfileIndependentLabelValue();
     }
     else if ( this.getProfileDependentLabelValue().length() != 0 ) {
-      return this.getProfileDependentLabelValue();
+      label = this.getProfileDependentLabelValue();
+    }
+    if ( label.length() > 0 ) {
+      return label;
     }
     return this.getURI().replaceAll(".*#(.*)", "$1")+" (uri)";
   }
@@ -98,8 +101,8 @@ public class OWLInstanceItem implements Serializable, Comparable<OWLInstanceItem
    * Checks if this should be displayed in the current profile.
    */
   public Boolean isVisible() {
-    // right now, if accessStatus is not null it's set to "ignore", so the following is a fair check for visibility
-    if ( this.getAccessStatus() != null ) {
+    // if the AccessStatus for the current item in the current profile is set to ignore, we'll return false
+    if ( this.getAccessStatus() != null && this.getAccessStatus(ProfileAndLanguageChanger.getStaticProfile()).contentEquals("ignore") ) {
       return false;
     }
     return true;
@@ -107,6 +110,22 @@ public class OWLInstanceItem implements Serializable, Comparable<OWLInstanceItem
   
   public AccessStatus getAccessStatus() {
     return this.accessStatus;
+  }
+  
+  /**
+   * Gets the access status String for a profile name.
+   * <p>
+   * This is a shortcut for {@link Property#getAccessStatus()#getStatus(profile)}
+   * @param profile
+   */
+  public String getAccessStatus(String profile) {
+    if ( this.getAccessStatus() != null ) {
+      return this.getAccessStatus().getStatus(profile);
+    }
+    else {
+      return "";
+    }
+    
   }
   
   public int compareTo(OWLInstanceItem owlItem) {
