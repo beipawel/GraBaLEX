@@ -37,7 +37,7 @@
     <!--    <description>This is the path in the file system where the medic.owl file should exist</description>-->
     <param-name>model_file</param-name>
     <!--    <param-value>/Users/pawelmuller/Sites/studienarbeit.home/zeug_von_dennis/091209/archive/100111_medic_model.owl</param-value> -->
-    <param-value>/Users/pawelmuller/Sites/studienarbeit.home/zeug_von_dennis/091209/medic.owl</param-value>
+    <param-value>/Users/pawelmuller/Sites/studienarbeit.home/owlData/medic.owl</param-value>
   </context-param>
   
   <context-param>
@@ -45,7 +45,7 @@
     <param-name>repository_name</param-name>
 <!--    <param-value>091204_data</param-value>-->
 <!--    <param-value>medic</param-value>-->
-    <param-value>100307_GraBaLEX_data</param-value>
+    <param-value>GraBaLEX_Data</param-value>
   </context-param>
   
   <context-param>

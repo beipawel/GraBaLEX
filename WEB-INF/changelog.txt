@@ -1,3 +1,6 @@
+Version 0.81:
+  - FIX: AccessStatus überprüfung in den isVisible Methoden war nicht Profilabhängig.
+
 Version 0.80:
   - Optimierungen im filter für Properties
   - Debug Code für BahaviorTyp ist jetzt nicht mehr drin
