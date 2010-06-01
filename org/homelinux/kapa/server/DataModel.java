@@ -44,6 +44,11 @@ import edu.stanford.smi.protegex.owl.model.RDFProperty;
 import edu.stanford.smi.protegex.owl.model.RDFSClass;
 import edu.stanford.smi.protegex.owl.model.RDFSNamedClass;
 
+/**
+ * This class connects to an OWL-ontology via Sesame and Protege API. 
+ * It prepares data on initialization, and gives access to data on runtime via its public methods.
+ * @author Pawel Müller
+ */
 public class DataModel {
   // This Data Model defines some useful Methods and Variables for Data needed by a GUI
   // I'll try to keep it as GUI unspecific as possible
@@ -275,8 +280,7 @@ public class DataModel {
   @SuppressWarnings({ "unchecked"})
   private ArrayList<Property> getSimpleProperties() {
     /**
-     * maybe we don't need this molekular/atomar stuff. Specifying if a Property is an end point,
-     * and if it is sub-specifiable we can separate properties in 3 classes
+     * There are 3 main categories of Properties
      *   - Is End Point: ((subproperty of :has-descriptive-ralation-to && subclass of LinguisticFeature in domain) || rdf:type)
      *      - no sub-specification possible
      *      - user get's a drop-down list of instances found ( TODO what if the list is long???)
@@ -357,13 +361,24 @@ public class DataModel {
       }
       else if ( propertyName.matches(".*rdf.*#type$") ) {
         // Special treatment for rdf:type
-        // eventually I coiuld do that in the getSpecialProperties Method
+        // eventually we could do that in the getSpecialProperties Method
+        
+        // The rdf:type property gets special treatment.
+        // This property has to be visible in each context, regardless which property is selected in the wrapper specification object,
+        // or if it is in the root specifications object.
+        // To achieve that, we'll construct a domain, which is an ArrayList holding every OWL-class URI in it, while
+        // the range holds only all subclasses of LexicalEntity.
+        // The range should be changed by the GUI, so that it holds the Range of the property selected in the wrapper specification object,
+        // but if there is no wrapper, and we're in the root specifications object (or whatever the gui, which connects to the DataModel class calls it) then we can use the range
+        // for a default behavior.
         System.out.println("dealing with rdf:type");
         ArrayList<String> dom = new ArrayList<String>();
-        dom.addAll(this.getSubclassesOf(this.owlModel.getRDFSNamedClass("LexicalEntity").getName(), true));
-//        dom.addAll(this.getSubclassesOf(this.owlModel.getRDFSNamedClass("DescriptiveEntity").getName(), true)); // this shouldn't be, we only want subclasses of LexicalEntitiy!!!
+        ArrayList<String> ran = new ArrayList<String>();
+        ran.addAll(this.getSubclassesOf(this.owlModel.getRDFSNamedClass("LexicalEntity").getName(), true));  // range
+        dom.addAll(this.getSubclassesOf(this.owlModel.getRDFSNamedClass("DescriptiveEntity").getName(), true)); // domain
+        dom.addAll(ran); // domain should also have all subclasses of LexicalEntity in it, so we simply append the ran object
         prop.setDomain(dom);
-        prop.setRange(dom);
+        prop.setRange(ran); 
         ComplexEndPoint cep = new ComplexEndPoint();
         cep.setRDFType(true);
         prop.setBehavioralType(cep);

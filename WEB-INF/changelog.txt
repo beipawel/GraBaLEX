@@ -1,3 +1,10 @@
+Version 0.84:
+  - FIX: rdf:type Property wurde nur unter lexical-relation Properties aufgelistet. Jetzt erscheint es immer. 
+
+Version 0.83:
+  - UPDATE: Protege 3.4.1 -> 3.4.4
+   
+
 Version 0.82:
   - FIX: Ausgewählte Profile und Sprachen werden jetzt hervorgehoben.
 
