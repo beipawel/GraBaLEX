@@ -38,17 +38,17 @@ public class DropDownInput extends ListBox implements WidgetNavi, Observer {
     Specifications.getProfileAndLanguageChanger().registerObserver(this); // we register to the observerable object
     Property prop = this.getWrapper().getPropertyDropDown().getSelectedProperty();
     // special treatment for rdf:type
-    if ( prop.getName().matches(".*rdf.*#type$") ) {
-      if ( this.navi.getLocalRoot() != this.navi.getRoot() ) {
-        // if we are not in the root Specifications object, we have to change the Range of the Property object
-        Property previousProperty = this.navi.getLocalRoot().getWrapper().getPropertyDropDown().getSelectedProperty();
-        Property propCopy = new Property();
-        propCopy.setBehavioralType(prop.getBehaviorType());
-        // we'll set another range.
-        propCopy.setRange(previousProperty.getRange());
-        prop = propCopy;
-      }
-    }
+//    if ( prop.getName().matches(".*rdf.*#type$") ) {
+//      if ( this.navi.getLocalRoot() != this.navi.getRoot() ) {
+//        // if we are not in the root Specifications object, we have to change the Range of the Property object
+//        Property previousProperty = this.navi.getLocalRoot().getWrapper().getPropertyDropDown().getSelectedProperty();
+//        Property propCopy = new Property();
+//        propCopy.setBehavioralType(prop.getBehaviorType());
+//        // we'll set another range.
+//        propCopy.setRange(previousProperty.getRange());
+//        prop = propCopy;
+//      }
+//    }
     controllerSrvs.getOWLInstanceItems(prop, this.callback);
   }
 

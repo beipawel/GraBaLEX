@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 import com.google.gwt.user.client.Random;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
 public class Specification extends HorizontalPanel implements Queryable {
@@ -49,6 +48,7 @@ public class Specification extends HorizontalPanel implements Queryable {
       this.getTransparentWrapper().add(this.subSpecifications);
       this.getExtendButton().setVisible(false);
       this.getShrinkButton().setVisible(true);
+      // We disable the TextSearchBox when extending
       if ( this.getPropertyDropDown().getSelectedProperty().getBehaviorType() instanceof Dynamic ) {
         this.getTextSearchBox().setEnabled(false);
       }
@@ -63,6 +63,7 @@ public class Specification extends HorizontalPanel implements Queryable {
     this.subSpecifications = null;
     this.getExtendButton().setVisible(true);
     this.getShrinkButton().setVisible(false);
+    // We enable the TextSearchBox when shrinking
     if ( this.getPropertyDropDown().getSelectedProperty().getBehaviorType() instanceof Dynamic ) {
       this.getTextSearchBox().setEnabled(true); // we disable the textbox
     }
@@ -271,7 +272,21 @@ public class Specification extends HorizontalPanel implements Queryable {
   }
   
   private Boolean wrapInSenseOrForm(Property property) {
-    // TODO: compare if the Domain of the selected Property has a none empty intersection with Properties.getDefaultDomain().
+    // if the Domain of the selected Property has a none empty intersection with Properties.getDefaultDomain(), we want to return true,
+    // so that it can be prefixed with medic:has-sense-or-form-relation-to
+    // If the passed property is rdf:type, then we don't want it to be prefixed with medic:has-sense-or-form-relation-to, hence we return false.
+    // The reason why we have to check for rdf:type separately is, that the properties domain contains all OWL-classes, so that it's visible
+    // in each PropertyDropDown object regardless of which property was selected in its wrapper Specification object. Because of that implementation
+    // we would return true in the for loop below.
+    if ( property.getName().matches(".*rdf.*#type$") ) {
+      for (Iterator<String> domIterator = property.getRange().iterator(); domIterator.hasNext();) {
+        String cls = domIterator.next();
+        if ( this.wrapper.getProperties().getDefaultDomain().contains(cls) ) {
+          return true;
+        }
+      }
+      return false;
+    }
     for (Iterator<String> domIterator = property.getDomain().iterator(); domIterator.hasNext();) {
       String cls = domIterator.next();
       if ( this.wrapper.getProperties().getDefaultDomain().contains(cls) ) {

@@ -1,3 +1,26 @@
+Version 0.88:
+  - FIX: Query mit rdf:type wurde immer noch falsch erstellt. Grund war, dass das Property Objekt, welches rdf:type repräsentierte,
+         die defaultDomain als Range hatte. Jetzt wird in Specifications#computeLocalProperties() die Range dieser Property 
+         mit der Range der subspezifizierenden Property ersetzt. Dadurch hat lokal jedes Specifications Objekt immer eine rdf:type Property
+         mit der Range die sie haben sollte. Vor dieser Version wurde nur beim anfordern von OWLInstanceItems eine billige Kopie erstellt
+         mit der die Items angefragt wurden.
+         In der DropDownInput Klasse wird diese Billigkopie jetzt nicht erstellt, da sie nicht benötigt wird. 
+
+Version 0.87:
+  - FIX: Anfragen mit rdf:type wurden teilweise noch falsch formuliert. Hat die subspezifizierte Property in der Range Subklassen von
+         LexicalEntity, so soll die Query mit einem zusätzlichen medic:has-sense-or-form-relation-to präfigiert werden. Dazu wurde die 
+         Methode Specification#wrapInSenseOrForm() editiert. 
+
+Version 0.86:
+  - CHANGE: TextSearchBox wird wieder ausgeblendet wenn subspezifiziert wird. Grund ist, die unsaubere Implementierung der  
+            Specification#toSPARQLQuery() Methode. Damit es in Barcelona keine unvorhergesehenen Bugs gibt, wird der Schritt wieder
+            rückgängig gemacht.
+
+Version 0.85:
+  - FIX: bei rdf:type wurde ein medic:has-sense-or-form-relation-to in der Query vorangestellt. Das sollte nicht sein. 
+  - CHANGE: TextSearchBox wird jetzt nicht ausgeblendet. Man kann die Form im Textfeld angeben, dann subspecifizieren. 
+            Dazu stark die Specification#toSPARQLQuery() Methode angepasst. 
+
 Version 0.84:
   - FIX: rdf:type Property wurde nur unter lexical-relation Properties aufgelistet. Jetzt erscheint es immer. 
 

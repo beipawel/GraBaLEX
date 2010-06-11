@@ -8,7 +8,7 @@ import java.util.Iterator;
 /** 
  * This Class is a model of a property.
 **/
-public class Property implements Serializable, Comparable<Property> {
+public class Property implements Serializable, Comparable<Property>, Cloneable {
   
   private static final long                       serialVersionUID = -2967380990140255132L;
   private String                                  name;
@@ -193,6 +193,18 @@ public class Property implements Serializable, Comparable<Property> {
     
   }
   
+  public Object clone() {
+    Cloneable propClone = new Property();
+    Property prop = (Property) propClone;
+    prop.setAccessStatus(this.getAccessStatus());
+    prop.setDomain(this.getDomain());
+    prop.setRange(this.getRange());
+    prop.setBehavioralType(this.getBehaviorType());
+    prop.setLabel(this.getLabels());
+    prop.setName(this.getName());
+    prop.setPath(this.getPath());
+    return propClone;
+  }
   
   public String toString() {
     String s = "";

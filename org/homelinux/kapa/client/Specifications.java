@@ -62,7 +62,35 @@ public class Specifications extends VerticalPanel implements Queryable, Observer
       // if we are NOT root, we have to find out the selected Property to the left
       Property p = this.getWrapper().getPropertyDropDown().getSelectedProperty();
       this.setLocalProps(this.props.filter(this.props.indexOf(p)));
+      
+      // We'll go through the local properties and replace the Property object representing the rdf:type Property.
+      // The purpose is to replace the range of that property. Prior to Version 0.88 we did that in the DropDownInput class,
+      // but only locally when sending a request for OWLInstanceItems to the server.
+      // Here we'll change that Property "globally" for each subspecification. That way we can use the range in 
+      // the Specification#wrapInSenseOrForm() method.
+      Integer i = 0; // we need to keep track on the index
+      for (Iterator<Property> propIterator = this.localProps.iterator(); propIterator.hasNext();) {
+        Property property = propIterator.next();
+        if ( property.getName().matches(".*rdf.*#type$") ) {
+          Property previousProperty = this.getWrapper().getPropertyDropDown().getSelectedProperty();
+          Property propCopy = (Property) property.clone();
+          // we'll set another range.
+          propCopy.setRange(previousProperty.getRange());
+          property = propCopy;
+          this.localProps.set(i, propCopy); // we replace the reference at index i with a reference to our new object
+          break; // there's only one rdf:type Property in each list, so we break once we had found the first and made our adjustments.
+        }
+        i++;
+        
+      }
+      
     }
+    
+    
+    
+    
+    
+    
   }
   
   private void setFirstSpecificationWrapperObject() {
